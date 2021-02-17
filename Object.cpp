@@ -46,7 +46,7 @@ void Object::RotatePos(Vector3 rot)
 
 void Object::RotateRerpPos(Vector3 rot, float time)
 {
-	MATH->Lerp<Vector3>(&vRot, rot, rot, time);
+	MATH->Lerp<Vector3>(&vRot, vRot, rot, time);
 }
 
 void Object::SetPos(Vector3 pos)

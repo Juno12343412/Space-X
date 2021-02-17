@@ -1,5 +1,7 @@
 #include "DXUT.h"
 #include "ImageManager.h"
+#include "MeshLoader.h"
+
 
 void texture::CenterRender(Vector3 pos, float rot, Vector3 size, D3DCOLOR color)
 {
@@ -9,7 +11,6 @@ void texture::CenterRender(Vector3 pos, float rot, Vector3 size, D3DCOLOR color)
 void texture::Render(Vector3 pos, float rot, Vector3 size, RECT rect, D3DCOLOR color)
 {
 	IMAGE->Render(this, pos, rot, size, rect, color);
-
 }
 
 void texture::Release()
@@ -17,59 +18,6 @@ void texture::Release()
 	SAFE_RELEASE(texturePtr);
 }
 
-VECtexture::VECtexture()
-{
-}
-
-VECtexture::~VECtexture()
-{
-	for (auto iter : m_VecTex)
-	{
-		iter->Release();
-		SAFE_DELETE(iter);
-	}
-	m_VecTex.clear();
-}
-
-void VECtexture::ADDIMAGE(texture* tempImage)
-{
-	m_VecTex.push_back(tempImage);
-}
-
-texture* VECtexture::FINDIMAGE(int count)
-{
-	if (count == -1)
-		return m_VecTex[0];
-	else
-		return m_VecTex[count];
-}
-
-VECMesh::VECMesh()
-{
-}
-
-VECMesh::~VECMesh()
-{
-	for (auto iter : vecMesh)
-	{
-		iter->Destroy();
-		SAFE_DELETE(iter);
-	}
-	vecMesh.clear();
-}
-
-void VECMesh::ADDMESH(CMeshLoader* tempImage)
-{
-	vecMesh.push_back(tempImage);
-}
-
-CMeshLoader* VECMesh::FINDMESH(int count)
-{
-	if (count = -1)
-		return vecMesh[0];
-	else
-		return vecMesh[count];
-}
 
 ImageManager::ImageManager()
 	:m_sprite(nullptr)
@@ -77,44 +25,10 @@ ImageManager::ImageManager()
 	Init();
 }
 
+
 ImageManager::~ImageManager()
 {
 	Release();
-}
-
-void ImageManager::Init()
-{
-	D3DXCreateSprite(g_device, &m_sprite);
-}
-
-void ImageManager::Release()
-{
-	for (auto iter : m_images)
-	{
-		iter.second->Release();
-		SAFE_DELETE(iter.second);
-	}
-	m_images.clear();
-	for (auto iter : vecImages)
-	{
-		SAFE_DELETE(iter.second);
-	}
-	vecImages.clear();
-	m_sprite->Release();
-
-	for (auto iter : meshes)
-	{
-		iter.second->Destroy();
-		SAFE_RELEASE(iter.second->m_pMesh);
-		SAFE_DELETE(iter.second);
-	}
-	meshes.clear();
-
-	for (auto iter : vecMeshes)
-	{
-		SAFE_DELETE(iter.second);
-	}
-	vecMeshes.clear();
 }
 
 
@@ -127,8 +41,7 @@ texture* ImageManager::AddImage(wstring key, wstring path)
 		D3DXIMAGE_INFO info;
 		TCHAR ch[256];
 
-		if (path.length() <= 13)
-		{
+		if (path.length() <= 13) {
 			wsprintf(ch, L"./Resource/2D/%s.png", path.c_str());
 		}
 		else
@@ -143,8 +56,14 @@ texture* ImageManager::AddImage(wstring key, wstring path)
 			m_images.insert(make_pair(key, text));
 			return text;
 		}
+#pragma region 로딩실패
+
+
+
+#pragma endregion
 		return nullptr;
 	}
+
 	return find->second;
 }
 
@@ -170,15 +89,22 @@ VECtexture* ImageManager::ADDVECIMAGE(wstring key, wstring path, int max)
 
 		TCHAR ch[256];
 
-		wsprintf(ch, L"./Resource/2D/%s/(%d).png", path.c_str(), i);
+		if (path.length() <= 13) {
+			wsprintf(ch, L"./Resource/2D/%s/(%d).png", path.c_str(), i);
+		}
+		else
+		{
+			wsprintf(ch, L"%s", path.c_str());
+		}
 		D3DXGetImageInfoFromFile(ch, &info);
 
-		if (D3DXCreateTextureFromFileEx(g_device, ch, D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT_NONPOW2 ,0, 0,
+		if (D3DXCreateTextureFromFileEx(g_device, ch, D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT_NONPOW2, 0, 0,
 			D3DFMT_A8R8G8B8, D3DPOOL_MANAGED, D3DX_DEFAULT, D3DX_DEFAULT, NULL, &info, nullptr, &lpTexture) == S_OK)
 		{
 			texture* text = new texture(lpTexture, info);
 			vec->ADDIMAGE(text);
 		}
+
 	}
 
 	vecImages.insert(make_pair(key, vec));
@@ -197,15 +123,21 @@ CMeshLoader* ImageManager::AddMesh(wstring key, wstring path)
 	{
 		CMeshLoader* mesh = new CMeshLoader();
 		WCHAR ch[256];
-		wsprintf(ch, L"./Resouce/3d/%s.obj", path.c_str());
+		wsprintf(ch, L"./Resource/3D/%s.obj", path.c_str());
 		mesh->Create(g_device, ch);
 		if (mesh)
 		{
 			meshes.insert(make_pair(key, mesh));
 			return mesh;
 		}
+#pragma region 로딩실패
+
+
+
+#pragma endregion
 		return nullptr;
 	}
+
 	return find->second;
 }
 
@@ -219,8 +151,7 @@ CMeshLoader* ImageManager::FindMesh(wstring key)
 VECMesh* ImageManager::ADDVECMESH(wstring key, wstring path, int max)
 {
 	auto find = vecMeshes.find(key);
-	if (find == vecMeshes.end())
-	{
+	if (find == vecMeshes.end()) {
 		VECMesh* vec = new VECMesh();
 
 		for (int i = 0; i <= max; i++)
@@ -235,7 +166,7 @@ VECMesh* ImageManager::ADDVECMESH(wstring key, wstring path, int max)
 			}
 		}
 		vecMeshes.insert(make_pair(key, vec));
-		return  vec;
+		return vec;
 	}
 	return nullptr;
 }
@@ -243,6 +174,47 @@ VECMesh* ImageManager::ADDVECMESH(wstring key, wstring path, int max)
 VECMesh* ImageManager::FINDVECMESH(wstring key)
 {
 	return vecMeshes[key];
+}
+
+void ImageManager::Init()
+{
+	D3DXCreateSprite(g_device, &m_sprite);
+}
+
+void ImageManager::Release()
+{
+	for (auto iter : m_images)
+	{
+		iter.second->Release();
+		SAFE_DELETE(iter.second);
+	}
+	m_images.clear();
+
+	for (auto iter : vecImages)
+	{
+		SAFE_DELETE(iter.second);
+	}
+	vecImages.clear();
+	m_sprite->Release();
+
+	for (auto iter : meshes)
+	{
+		iter.second->Destroy();
+		SAFE_RELEASE(iter.second->m_pMesh);
+		SAFE_DELETE(iter.second);
+	}
+	meshes.clear();
+
+	for (auto iter : vecMeshes)
+	{
+		SAFE_DELETE(iter.second);
+	}
+	vecMeshes.clear();
+}
+
+void ImageManager::ReBegin(bool isUi, bool isBill)
+{
+	End(); Begin(isUi, isBill);
 }
 
 void ImageManager::Begin(bool isUi, bool isBill)
@@ -256,14 +228,11 @@ void ImageManager::Begin(bool isUi, bool isBill)
 	{
 		if (!isUi)
 			m_sprite->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_OBJECTSPACE);
-		else
+		else {
 			m_sprite->Begin(D3DXSPRITE_ALPHABLEND);
+		}
 	}
-}
 
-void ImageManager::ReBegin(bool isUi, bool isBill)
-{
-	End(); Begin(isUi, isBill);
 }
 
 void ImageManager::End()
@@ -300,6 +269,7 @@ void ImageManager::Render(texture* texturePtr, Vector3 pos, float rot, Vector3 s
 
 		m_sprite->SetTransform(&(mSize * mRot * mPos));
 		m_sprite->Draw(texturePtr->texturePtr, &rect, NULL, NULL, D3DCOLOR_ARGB(255, 255, 255, 255));
+
 	}
 }
 
@@ -330,11 +300,12 @@ void ImageManager::MeshRender(CMeshLoader* meshPtr, Matrix matWorld, bool isCCW)
 	}
 }
 
-void ImageManager::TextDraw(wstring str, Vector3 pos, float size, D3DCOLOR color, bool center)
+
+void ImageManager::TextDraw(wstring str, Vector3 pos, float size, D3DCOLOR color, bool Center)
 {
 	Matrix mat;
 
-	if (!center) {
+	if (!Center) {
 
 		D3DXCreateFontA(g_device, size, 0, 10, 1, FALSE, HANGEUL_CHARSET, 0, 0, 0, "Fixedsys", &lpFont);
 		D3DXMatrixTranslation(&mat, pos.x, pos.y, pos.z);
@@ -350,14 +321,69 @@ void ImageManager::TextDraw(wstring str, Vector3 pos, float size, D3DCOLOR color
 	SAFE_RELEASE(lpFont);
 }
 
+
 void ImageManager::LostDevice()
 {
 	m_sprite->OnLostDevice();
-
 }
 
 void ImageManager::ResetDevice()
 {
 	m_sprite->OnResetDevice();
+}
+
+
+VECtexture::VECtexture()
+{
+}
+
+VECtexture::~VECtexture()
+{
+	for (auto iter : m_VecTex) {
+		iter->Release();
+		SAFE_DELETE(iter);
+	}
+	m_VecTex.clear();
+}
+
+void VECtexture::ADDIMAGE(texture* tempImage)
+{
+	m_VecTex.push_back(tempImage);
+}
+
+texture* VECtexture::FINDIMAGE(int count)
+{
+	if (count == -1)
+		return m_VecTex[0];
+	else
+		return m_VecTex[count];
+}
+
+VECMesh::VECMesh()
+{
 
 }
+
+VECMesh::~VECMesh()
+{
+	for (auto iter : vecMesh) {
+		iter->Destroy();
+		SAFE_DELETE(iter);
+	}
+	vecMesh.clear();
+}
+
+void VECMesh::ADDMESH(CMeshLoader* tempMesh)
+{
+	vecMesh.push_back(tempMesh);
+}
+
+CMeshLoader* VECMesh::FINDMESH(int count)
+{
+	if (count == -1)
+		return vecMesh[0];
+	else
+		return vecMesh[count];
+}
+
+
