@@ -1,10 +1,11 @@
 #include "DXUT.h"
 #include "MainGame.h"
 #include "LoadingScene.h"
-
+#include "Stage1.h"
 void MainGame::Init()
 {
 	SCENE->AddScene("loading", new LoadingScene);
+	SCENE->AddScene("stage1", new Stage1);
 	SCENE->ChangeScene("loading");
 }
 

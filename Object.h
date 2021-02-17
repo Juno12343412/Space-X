@@ -40,6 +40,7 @@ public:
 	virtual void TransformUpdate();
 	virtual void MovePos(Vector3 pos);
 	virtual void RotatePos(Vector3 rot);
+	virtual void RotateRerpPos(Vector3 rot, float time);
 	virtual void SetPos(Vector3 pos);
 	virtual void SetRotate(Vector3 rot);
 

@@ -56,5 +56,4 @@ static float gravityScale = 1;
 #include "ObjectManager.h"
 #include "ColliderManager.h"
 
-
 #pragma endregion 

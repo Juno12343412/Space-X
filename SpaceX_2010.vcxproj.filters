@@ -60,6 +60,12 @@
     <Filter Include="004::GAME\SCENE\LOADING">
       <UniqueIdentifier>{f04ef716-cbb9-476a-b843-3179266b960b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="004::GAME\OBJECT\PLAYER">
+      <UniqueIdentifier>{020f9cf2-1bfa-422b-81aa-a9b245904520}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="004::GAME\SCENE\Stage1">
+      <UniqueIdentifier>{9d0a9afd-143d-470a-b243-ee0172e98380}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -184,6 +190,12 @@
     <ClInclude Include="LoadingScene.h">
       <Filter>004::GAME\SCENE\LOADING</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>004::GAME\OBJECT\PLAYER</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage1.h">
+      <Filter>004::GAME\SCENE\Stage1</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SpaceX.cpp">
@@ -239,6 +251,12 @@
     </ClCompile>
     <ClCompile Include="LoadingScene.cpp">
       <Filter>004::GAME\SCENE\LOADING</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>004::GAME\OBJECT\PLAYER</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage1.cpp">
+      <Filter>004::GAME\SCENE\Stage1</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

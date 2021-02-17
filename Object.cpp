@@ -44,6 +44,11 @@ void Object::RotatePos(Vector3 rot)
 	vRot += rot * D_TIME;
 }
 
+void Object::RotateRerpPos(Vector3 rot, float time)
+{
+	MATH->Lerp<Vector3>(&vRot, rot, rot, time);
+}
+
 void Object::SetPos(Vector3 pos)
 {
 	vPos = pos;

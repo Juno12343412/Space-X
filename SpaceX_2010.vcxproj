@@ -390,6 +390,8 @@
     <ClCompile Include="LoadingScene.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Stage1.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="Collider.h" />
@@ -404,10 +406,12 @@
     <ClInclude Include="MeshLoader.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="singleton.h" />
     <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="Stage1.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Timer.h" />
     <None Include="DXUT\Optional\directx.ico" />

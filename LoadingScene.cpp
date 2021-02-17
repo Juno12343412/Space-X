@@ -4,16 +4,7 @@
 void LoadingScene::Init()
 {
 	CAMERA->Reset();
-	SOUND->AddSound("SettRStart", L"./Resource/Sound/SettRStart.wav");
-	SOUND->AddSound("SettRFinsh", L"./Resource/Sound/SettRFinsh.wav");
-	SOUND->AddSound("SettBuff", L"./Resource/Sound/SettBuff.wav");
-	ImageLoad(L"SettIdle", L"Player/Animations/Idle", Type::LTHREE, 15);
-	ImageLoad(L"SettRun", L"Player/Animations/Run", Type::LTHREE, 15);
-	ImageLoad(L"SettAttack1", L"Player/Animations/Attack1", Type::LTHREE, 30);
-	ImageLoad(L"SettAttack2", L"Player/Animations/Attack2", Type::LTHREE, 30);
-	ImageLoad(L"SettAttackR", L"Player/Animations/AttackR", Type::LTHREE, 27);
-	ImageLoad(L"GrassBlock", L"Blocks/GrassBlock", Type::LTHREE);
-	ImageLoad(L"colRange", L"colRange", Type::LTWO);
+	ImageLoad(L"playerMesh", L"Player/Player01", Type::LTHREE);
 }
 
 void LoadingScene::Update()
@@ -48,7 +39,8 @@ void LoadingScene::Update()
 	}
 	if (Anilist.empty() && Imagelist.empty() && Meshlist.empty() && MeshAnilist.empty())
 	{
-		SCENE->ChangeScene("test");
+		DEBUG_LOG("·Îµù³¡");
+		SCENE->ChangeScene("stage1");
 	}
 }
 
