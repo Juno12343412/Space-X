@@ -37,7 +37,6 @@ void ColliderManager::UnRegister(Collider* col)
 
 void ColliderManager::Update()
 {
-
 	if (colliderList.size() < 2)
 		return;
 
@@ -47,12 +46,16 @@ void ColliderManager::Update()
 		{
 			if (iter1 == iter2 || !iter1->isActive || !iter2->isActive)
 				continue;
-			if (iter1->parent->isDestroy) {
+			if (iter1->isDestroy) {
 				colliderList.remove(iter1);
+				if (colliderList.size() < 2)
+					return;
 				continue;
 			}
-			if (iter2->parent->isDestroy) {
+			if (iter2->isDestroy) {
 				colliderList.remove(iter2);
+				if (colliderList.size() < 2)
+					return;
 				continue;
 			}
 
@@ -75,13 +78,5 @@ void ColliderManager::Update()
 				}
 			}
 		}
-	}
-}
-
-void ColliderManager::Render()
-{
-	for (auto iter : colliderList)
-	{
-		iter->RangeRender();
 	}
 }

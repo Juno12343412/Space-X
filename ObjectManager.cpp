@@ -25,11 +25,11 @@ void ObjectManager::Update()
 			else
 			{
 				(*iter)->Update();
+				COLLISION->Update();
 				iter++;
 			}
 		}
 	}
-	COLLISION->Update();
 	if (INPUT->KeyDown(VK_F11))
 	{
 		rendColRange = !rendColRange;

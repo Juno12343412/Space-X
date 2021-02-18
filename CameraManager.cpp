@@ -65,10 +65,10 @@ void CameraManager::Update()
 void CameraManager::Reset()
 {
 	m_vCameraPos = Vector3(1, 100, 0);
-	m_vCameraRot = Vector3(0, 0, 0);
 
 	m_vScale = m_vEndScale = D3DXVECTOR3(1, 1, 1);
 	m_vCameraRot = Vector3(0, -0.8f, 1);
+
 	D3DXMatrixOrthoLH(&m_matProj, m_vViewSize.x, -m_vViewSize.y, m_vViewSize.z, 1);
 	D3DXMatrixPerspectiveFovLH(&m_matProj, D3DX_PI / 4.f, 16.f / 9.f, 1.f, 1000000);
 }

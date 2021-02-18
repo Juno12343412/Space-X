@@ -66,6 +66,12 @@
     <Filter Include="004::GAME\SCENE\Stage1">
       <UniqueIdentifier>{9d0a9afd-143d-470a-b243-ee0172e98380}</UniqueIdentifier>
     </Filter>
+    <Filter Include="004::GAME\OBJECT\SKY">
+      <UniqueIdentifier>{4817f99e-f3be-4526-90f3-d5dd56e498fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="004::GAME\OBJECT\Bullet">
+      <UniqueIdentifier>{afb6d31b-8ec2-47a1-84c1-b451263d8c2d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -196,6 +202,12 @@
     <ClInclude Include="Stage1.h">
       <Filter>004::GAME\SCENE\Stage1</Filter>
     </ClInclude>
+    <ClInclude Include="Sky.h">
+      <Filter>004::GAME\OBJECT\SKY</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBullet.h">
+      <Filter>004::GAME\OBJECT\Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SpaceX.cpp">
@@ -257,6 +269,12 @@
     </ClCompile>
     <ClCompile Include="Stage1.cpp">
       <Filter>004::GAME\SCENE\Stage1</Filter>
+    </ClCompile>
+    <ClCompile Include="Sky.cpp">
+      <Filter>004::GAME\OBJECT\SKY</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBullet.cpp">
+      <Filter>004::GAME\OBJECT\Bullet</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -8,6 +8,8 @@ class Player :
     float rotSpeed;
     bool moveA = false;
     bool moveD = false;
+    Timer* attackT = nullptr;
+    Collider* bodyCollider1 = nullptr;
     // Object을(를) 통해 상속됨
     virtual void Init() override;
     virtual void Update() override;

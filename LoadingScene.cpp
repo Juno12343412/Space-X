@@ -5,6 +5,9 @@ void LoadingScene::Init()
 {
 	CAMERA->Reset();
 	ImageLoad(L"playerMesh", L"Player/Player01", Type::LTHREE);
+	ImageLoad(L"spaceSky", L"Sky/SpaceSky", Type::LTHREE);
+	ImageLoad(L"bullet", L"Bullet/Bullet", Type::LTHREE);
+	ImageLoad(L"colRange", L"colRange", Type::LTWO);
 }
 
 void LoadingScene::Update()

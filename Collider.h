@@ -25,7 +25,7 @@ public:
 	float colRadius = 0;
 	bool isEnter = false;
 	bool isActive = true;
-
+	bool isDestroy = false;
 	Collider();
 	virtual ~Collider();
 

@@ -15,7 +15,6 @@ public:
 
 	void Register(Collider* col, Object* _parent, Vector3 pos, float radius, ColliderTag Tag);
 	void UnRegister(Collider* col);
-	void Render();
 
 	list<Collider*> colliderList;
 
