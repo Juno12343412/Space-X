@@ -46,17 +46,13 @@ void ColliderManager::Update()
 		{
 			if (iter1 == iter2 || !iter1->isActive || !iter2->isActive)
 				continue;
-			if (iter1->isDestroy) {
+			if (iter1->isDestroy || iter1->parent->isDestroy) {
 				colliderList.remove(iter1);
-				if (colliderList.size() < 2)
-					return;
-				continue;
+				return;
 			}
-			if (iter2->isDestroy) {
+			if (iter2->isDestroy || iter2->parent->isDestroy) {
 				colliderList.remove(iter2);
-				if (colliderList.size() < 2)
-					return;
-				continue;
+				return;
 			}
 
 			if (collisionTag[iter1->colTag][iter2->colTag])
@@ -68,7 +64,7 @@ void ColliderManager::Update()
 						iter1->OnEnterCollision(iter1, iter2);
 						iter1->isEnter = true;
 					}
-				}
+				} 
 				else
 				{
 					if (iter1->isEnter) {

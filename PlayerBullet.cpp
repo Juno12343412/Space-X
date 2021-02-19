@@ -7,13 +7,14 @@ void PlayerBullet::Init()
 	moveSpeed = 1000;
 	vSize = { 0.3f,0.3f, 0.3f };
 	bulletCollider = new Collider;
-	COLLISION->Register(bulletCollider, this, vPos, 5, ColliderTag::PLAYERATTACK);
+	COLLISION->Register(bulletCollider, this, vPos, 5, ColliderTag::PLAYERBULLET1);
+	damage = 50;
 }
 
 void PlayerBullet::Update()
 {
 	bulletCollider->colPos = vPos;
-	MovePos(Vector3(0, 0, 100) * moveSpeed * D_TIME);
+	MovePos(Vector3(0, 0, 50) * moveSpeed * D_TIME);
 	if (vPos.z >= 1000) isDestroy = true;
 }
 
@@ -24,10 +25,22 @@ void PlayerBullet::Render()
 
 void PlayerBullet::Release()
 {
+	bulletCollider->isDestroy = true;
 }
 
 void PlayerBullet::onCollisionEnter(Collider* col1, Collider* col2)
 {
+	switch (col1->colTag)
+	{
+	case ColliderTag::PLAYERBULLET1:
+		switch (col2->colTag)
+		{
+		case ColliderTag::ENEMY:
+			isDestroy = true;
+			break;
+		}
+		break;
+	}
 }
 
 void PlayerBullet::onCollisionExit(Collider* col1, Collider* col)

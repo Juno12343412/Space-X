@@ -72,6 +72,12 @@
     <Filter Include="004::GAME\OBJECT\Bullet">
       <UniqueIdentifier>{afb6d31b-8ec2-47a1-84c1-b451263d8c2d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="004::GAME\OBJECT\ENEMY">
+      <UniqueIdentifier>{ac502c6c-5a17-4f5e-9850-7f13e94b1315}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="004::GAME\OBJECT\Effect">
+      <UniqueIdentifier>{77c92cb9-490d-4f35-a769-83f5a054b945}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -208,6 +214,12 @@
     <ClInclude Include="PlayerBullet.h">
       <Filter>004::GAME\OBJECT\Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>004::GAME\OBJECT\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>004::GAME\OBJECT\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SpaceX.cpp">
@@ -275,6 +287,12 @@
     </ClCompile>
     <ClCompile Include="PlayerBullet.cpp">
       <Filter>004::GAME\OBJECT\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>004::GAME\OBJECT\ENEMY</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>004::GAME\OBJECT\Effect</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

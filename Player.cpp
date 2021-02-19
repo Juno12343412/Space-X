@@ -9,7 +9,7 @@ void Player::Init()
 	rotSpeed = 5000;
 	vSize = { 0.03f,0.03f ,0.03f };
 	attackT = new Timer;
-	attackT->SetTimer(0.1f);
+	attackT->SetTimer(0.3f);
 	bodyCollider1 = new Collider;
 	COLLISION->Register(bodyCollider1, this, vPos, 20, ColliderTag::PLAYER);
 }
@@ -71,6 +71,7 @@ void Player::Render()
 void Player::Release()
 {
 	SAFE_DELETE(attackT);
+	bodyCollider1->isDestroy = true;
 }
 
 void Player::onCollisionEnter(Collider* col1, Collider* col2)
