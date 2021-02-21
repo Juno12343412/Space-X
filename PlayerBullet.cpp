@@ -4,7 +4,7 @@
 void PlayerBullet::Init()
 {
 	bulletMesh = IMAGE->FindMesh(L"bullet");
-	moveSpeed = 1000;
+	moveSpeed = 300;
 	vSize = { 0.3f,0.3f, 0.3f };
 	bulletCollider = new Collider;
 	COLLISION->Register(bulletCollider, this, vPos, 5, ColliderTag::PLAYERBULLET1);
@@ -14,7 +14,7 @@ void PlayerBullet::Init()
 void PlayerBullet::Update()
 {
 	bulletCollider->colPos = vPos;
-	MovePos(Vector3(0, 0, 50) * moveSpeed * D_TIME);
+	MovePos(Vector3(0, 0, 1) * moveSpeed);
 	if (vPos.z >= 1000) isDestroy = true;
 }
 
@@ -41,6 +41,10 @@ void PlayerBullet::onCollisionEnter(Collider* col1, Collider* col2)
 		}
 		break;
 	}
+}
+
+void PlayerBullet::onCollisionStay(Collider* col1, Collider* col2)
+{
 }
 
 void PlayerBullet::onCollisionExit(Collider* col1, Collider* col)

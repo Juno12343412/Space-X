@@ -15,6 +15,11 @@ void Collider::OnEnterCollision(Collider* col1, Collider* col2)
 	parent->onCollisionEnter(col1, col2);
 }
 
+void Collider::OnStayCollision(Collider* col1, Collider* col2)
+{
+	parent->onCollisionStay(col1, col2);
+}
+
 void Collider::OnExitCollision(Collider* col1, Collider* col2)
 {
 	parent->onCollisionExit(col1, col2);

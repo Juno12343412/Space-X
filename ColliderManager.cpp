@@ -64,6 +64,10 @@ void ColliderManager::Update()
 						iter1->OnEnterCollision(iter1, iter2);
 						iter1->isEnter = true;
 					}
+					else
+					{
+						iter1->OnStayCollision(iter1, iter2);
+					}
 				} 
 				else
 				{

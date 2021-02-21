@@ -31,6 +31,7 @@ public:
 	virtual ~Collider();
 
 	virtual void OnEnterCollision(Collider* col1, Collider* col2);
+	virtual void OnStayCollision(Collider* col1, Collider* col2);
 	virtual void OnExitCollision(Collider* col1, Collider* col2);
 	void RangeRender();
 };

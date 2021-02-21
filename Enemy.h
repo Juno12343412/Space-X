@@ -17,6 +17,7 @@ public:
     virtual void Render() override;
     virtual void Release() override;
     virtual void onCollisionEnter(Collider* col1, Collider* col2) override;
+    virtual void onCollisionStay(Collider* col1, Collider* col2) override;
     virtual void onCollisionExit(Collider* col1, Collider* col) override;
 };
 

@@ -31,6 +31,10 @@ void Effect::onCollisionEnter(Collider* col1, Collider* col2)
 {
 }
 
+void Effect::onCollisionStay(Collider* col1, Collider* col2)
+{
+}
+
 void Effect::onCollisionExit(Collider* col1, Collider* col)
 {
 }

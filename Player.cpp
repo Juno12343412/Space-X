@@ -5,8 +5,8 @@
 void Player::Init()
 {
 	playerMesh = IMAGE->FindMesh(L"playerMesh");
-	moveSpeed = 5000;
-	rotSpeed = 5000;
+	moveSpeed = 100;
+	rotSpeed = 100;
 	vSize = { 0.03f,0.03f ,0.03f };
 	attackT = new Timer;
 	attackT->SetTimer(0.3f);
@@ -19,19 +19,19 @@ void Player::Update()
 	bodyCollider1->colPos = vPos;
 	if (INPUT->KeyPress('W'))
 	{
-		MovePos(Vector3(0, 0, 2) * moveSpeed * D_TIME);
+		MovePos(Vector3(0, 0, 1) * moveSpeed);
 	}
 	if (INPUT->KeyPress('S'))
 	{
-		MovePos(Vector3(0, 0, -2) * moveSpeed * D_TIME);
+		MovePos(Vector3(0, 0, -1) * moveSpeed);
 	}
 	if (INPUT->KeyPress('A') && !moveD)
 	{
 
 		if (vRot.z <= 30) {
-			RotateRerpPos(Vector3(0, 0, 1) * rotSpeed * D_TIME, 3);
+			RotateRerpPos(Vector3(0, 0, 1) * rotSpeed, 3);
 		}
-		vPos += Vector3(-0.02, 0, 0) * moveSpeed * D_TIME;
+		vPos += Vector3(-1, 0, 0) * moveSpeed * D_TIME;
 
 		moveA = true;
 	}
@@ -39,9 +39,9 @@ void Player::Update()
 	if (INPUT->KeyPress('D') && !moveA)
 	{ 
 		if (vRot.z >= -30) {
-			RotateRerpPos(Vector3(0, 0, -1) * rotSpeed * D_TIME, 3); 
+			RotateRerpPos(Vector3(0, 0, -1) * rotSpeed, 3); 
 		}
-		vPos += Vector3(0.02, 0, 0) * moveSpeed * D_TIME;
+		vPos += Vector3(1, 0, 0) * moveSpeed * D_TIME;
 		moveD = true;
 	}
 	else moveD = false;
@@ -75,6 +75,10 @@ void Player::Release()
 }
 
 void Player::onCollisionEnter(Collider* col1, Collider* col2)
+{
+}
+
+void Player::onCollisionStay(Collider* col1, Collider* col2)
 {
 }
 

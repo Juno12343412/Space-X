@@ -21,7 +21,7 @@ void Enemy::Init()
 		COLLISION->Register(bodyCollider1, this, vPos, 20, ColliderTag::ENEMY);
 		hp = 100;
 		vSize = { 0.03f,0.03f ,0.03f };
-
+		vRot = { 0,180,0 };
 		break;
 	}
 }
@@ -62,6 +62,10 @@ void Enemy::onCollisionEnter(Collider* col1, Collider* col2)
 		}
 		break;
 	}
+}
+
+void Enemy::onCollisionStay(Collider* col1, Collider* col2)
+{
 }
 
 void Enemy::onCollisionExit(Collider* col1, Collider* col)

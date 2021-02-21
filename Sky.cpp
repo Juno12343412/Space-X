@@ -9,6 +9,7 @@ void Sky::Init()
 
 void Sky::Update()
 {
+	RotatePos(Vector3(10,0,0));
 }
 
 void Sky::Render()
@@ -24,6 +25,10 @@ void Sky::onCollisionEnter(Collider* col1, Collider* col2)
 {
 }
 
+void Sky::onCollisionStay(Collider* col1, Collider* col2)
+{
+}
 void Sky::onCollisionExit(Collider* col1, Collider* col)
 {
 }
+

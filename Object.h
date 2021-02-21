@@ -36,6 +36,7 @@ public:
 	virtual void Render() PURE;
 	virtual void Release() PURE;
 	virtual void onCollisionEnter(Collider* col1, Collider* col2) PURE;
+	virtual void onCollisionStay(Collider* col1, Collider* col2) PURE;
 	virtual void onCollisionExit(Collider* col1, Collider* col) PURE;
 	virtual void TransformUpdate();
 	virtual void MovePos(Vector3 pos);
