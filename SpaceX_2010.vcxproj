@@ -389,6 +389,7 @@
     <ClCompile Include="ColliderManager.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyHp.cpp" />
     <ClCompile Include="LoadingScene.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
@@ -404,6 +405,7 @@
     <ClInclude Include="DXUT\Optional\SDKwavefile.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyHp.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="LoadingScene.h" />

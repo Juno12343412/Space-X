@@ -220,6 +220,9 @@
     <ClInclude Include="Effect.h">
       <Filter>004::GAME\OBJECT\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="EnemyHp.h">
+      <Filter>004::GAME\OBJECT\ENEMY</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SpaceX.cpp">
@@ -293,6 +296,9 @@
     </ClCompile>
     <ClCompile Include="Effect.cpp">
       <Filter>004::GAME\OBJECT\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyHp.cpp">
+      <Filter>004::GAME\OBJECT\ENEMY</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
